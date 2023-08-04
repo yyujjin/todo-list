@@ -9,15 +9,32 @@ let button = document.querySelector("button")
 //그래서 css같이 id만들어서 그걸로 연결하면 됨
 let a = ''
 const todolist = []
+function printTodoLength() {
+    // span.innerHTML = 'you have ' + todolist.length + ' pending tasks'
+    span.innerHTML = `you have ${todolist.length} pending tasks`
+}
 button.addEventListener('click', function(){
     if (input.value == a) {
         alert("할 일을 입력하세요")
     }else {
         todolist.push(input.value) 
         console.log(todolist)
+        printTodoLength()
+
     }
 })
 
+//span.innerHTML => 이너는 html의 모든 태그에 숨어있는 속성
+// 태그 사이에 글자를 넣어준다
+//html에 적은거는 그냥 시안이라고 생각하고
+//js에서 inner를 넣고 글자를 넣어주면 그걸 고대로 출력하는거임
+
+let span = document.querySelector("span")
+console.log(span)
+
+
+printTodoLength() //파라미터없어도 함수 호출되고 / 초기화
+//pending tasks
 
 
 // let a = ''//빈문자열 () // number, string(문자타입을) 

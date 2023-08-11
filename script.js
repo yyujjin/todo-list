@@ -3,7 +3,8 @@ const button = document.querySelector("button")
 const ul = document.querySelector("ul")
 const span = document.querySelector("span")
 const clearAll = document.querySelector("#Clear")
-const todolist = []
+
+let todolist = [] // {name: ''}
 
 function printTodoLength() {
     span.innerHTML = `you have ${todolist.length} pending tasks`
@@ -18,7 +19,8 @@ button.addEventListener('click',function() {
         return
     }
     // []
-    todolist.push(input.value) // ['할일']
+    todolist.push( {title:input.value}) // ['할일']
+    console.log(todolist)
     relist ()
     input.value = ''
 })
@@ -39,7 +41,7 @@ function xxxxxx () {
 function relist () {
     ul.innerHTML = ''
     for (let i =0; i<todolist.length; i++) {
-        ul.innerHTML = ul.innerHTML + `<li> ${todolist[i]} <button class = "deleteButton">x</button></li>`            
+        ul.innerHTML = ul.innerHTML + `<li> ${todolist[i].title} <button class = "deleteButton">x</button></li>`            
     } 
     xxxxxx ()
     printTodoLength ()
@@ -53,8 +55,15 @@ clearAll.addEventListener('click',function(){
 })
 
 
+async function getTodoList() {
+    const res = await fetch('https://jsonplaceholder.typicode.com/todos/')
+    const data = await res.json()
+    todolist = data
+    console.log(todolist)
+    relist ()
+}
 
-
+getTodoList()
 
 
 

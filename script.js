@@ -19,6 +19,9 @@ button.addEventListener('click',function() {
         return
     }
     // []
+    fetch(`http://localhost:3000/todos?todo=${input.value}`, {
+        method: 'POST'
+    })
     todolist.push( {title:input.value}) // ['할일']
     console.log(todolist)
     relist ()
@@ -31,6 +34,10 @@ function xxxxxx () {
         deleteBottons[i].addEventListener ('click',function(){
             alert("삭제 할꼬에염?")
             console.log(todolist)
+            let index = i
+            fetch(`http://localhost:3000/todos?index=${index}`, {
+                method: 'DELETE'
+            })
             todolist.splice(i,1)
             console.log(todolist)
             relist ()
@@ -56,7 +63,7 @@ clearAll.addEventListener('click',function(){
 
 
 async function getTodoList() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/todos/')
+    const res = await fetch('http://localhost:3000/todos/')
     const data = await res.json()
     todolist = data
     console.log(todolist)
